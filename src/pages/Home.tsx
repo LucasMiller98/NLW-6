@@ -18,7 +18,7 @@ export function Home() {
   const history = useHistory()
 
   useEffect(() => {
-    toast.info('Let me ask', {
+    toast.info('Bem vindo ao Let me ask!', {
       autoClose: 5000,
       position: 'top-center',
       hideProgressBar: false,
