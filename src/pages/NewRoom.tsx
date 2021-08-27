@@ -1,18 +1,34 @@
 import * as S from './styles/styles'
-import ilustrationImg from '../assets/images/ilustration.jpg'
+// import ilustrationImg from '../assets/images/ilustration.jpg'
 import logoImg from '../assets/images/logo.jpg'
 import { Button } from '../components/Button'
 import { Link } from 'react-router-dom'
 import { FormEvent, useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import { useContextApi } from '../context/hooks/useContextAPI'
+import { database } from '../services/firebase'
 
 export function NewRoom() {
+  const history = useHistory()
 
   const { user } = useContextApi()
-  const [value, setValue] = useState('')
+  const [newRoom, setNewRoom] = useState('')
   
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault()
+
+    if(newRoom.trim() === '') {
+      return
+    }
+
+    const roomRef = database.ref('rooms')
+
+    const firebaseRoom = await roomRef.push({
+      title: newRoom,
+      authorId: user?.id,
+    })
+
+    history.push(`/rooms/${firebaseRoom.key}`)
   }
   
   return(
@@ -37,8 +53,8 @@ export function NewRoom() {
               <S.Input 
                 type='text' 
                 placeholder='Nome da sala'
-                onChange={event => setValue(event.target.value)}
-                value={value}
+                onChange={event => setNewRoom(event.target.value)}
+                value={newRoom}
               />
               
               <Button type='submit'>

@@ -6,11 +6,11 @@ import 'react-toastify/dist/ReactToastify.css'
 export function App() {
 
   return (
-    <>
-    <ContextProvider>
-      <Routes />
-      <GlobalStyles />
-    </ContextProvider>
-    </>
+      <>
+        <ContextProvider>
+          <Routes />
+          <GlobalStyles />
+        </ContextProvider>
+      </>    
   );
 }

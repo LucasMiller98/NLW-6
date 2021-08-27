@@ -1,13 +1,17 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Home } from './../pages/Home';
 import { NewRoom } from './../pages/NewRoom';
+import { Room } from './../pages/Rooms';
+import { AdminRoom } from './../pages/AdminRoom';
 
 export const Routes = () => {
   return(
     <Router>
       <Switch>
         <Route exact path='/' component={Home} />
-        <Route path='/rooms/new' component={NewRoom} />
+        <Route path='/rooms/new' exact component={NewRoom} />
+        <Route path='/rooms/:id' component={Room} />
+        <Route path='/admin/rooms/:id' component={AdminRoom} />
       </Switch>
     </Router>
   )

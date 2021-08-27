@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 export const Button = styled.button `
-  margin-top: 64px;
   height: 50px;
   border-radius: 8px;
   font-weight: 500;
@@ -25,8 +24,88 @@ export const Button = styled.button `
     filter: brightness(.9)
   }
 
+  &.outlined {
+    background: #fff;
+    border: 1px solid #835afd;
+    color: #835afd;
+  }
+
   &:disabled {
     opacity: .6;
     cursor: not-allowed;
   }
+`
+
+export const ButtonRoomCode = styled.button `
+  height: 40px;
+  border-radius: 8px;
+  overflow: hidden;
+
+  background-color: #fff;
+  border: 1px solid #835afd;
+  cursor: pointer;
+
+  display: flex;
+`
+
+export const Container = styled.div `
+  background-color: #835afd;
+  padding: 0 12px ;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+`
+
+export const Span = styled.span `
+  display: block;
+  align-self: center;
+  flex: 1;
+  padding: 0 16px 0 12px;
+  width: 230px;
+  font-size: 14px ;
+  font-weight: 500;
+`
+
+export const Question = styled.div `
+  background: #fefefe;
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+  padding: 24px;
+
+  & + .question {
+    margin-top: 8px; // vai colocar 8px no top apartir da segunda div
+  }
+`
+
+export const Paragraph = styled.p `
+  color: #29292e;
+`
+
+export const UserInfo = styled.div `
+  display: flex;
+  align-items: center;
+`
+
+export const Footer = styled.footer `
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 24px;
+`
+
+export const Image = styled.img `
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+`
+
+export const SpanAuthorName = styled.span `
+  margin-left: 8px;
+  color: #737380;
+  font-size: 14px;
+`
+
+export const Children = styled.div `
+  
 `
