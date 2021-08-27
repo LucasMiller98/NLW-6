@@ -7,7 +7,7 @@ import { useContextApi } from '../context/hooks/useContextAPI';
 import * as ReactBootStrap from 'react-bootstrap'
 import { Question } from '../components/Question'
 import { useRoom } from './../context/hooks/useRoom';
-import { BiTrash } from 'react-icons/all'
+import { BiTrash, BiCheckCircle, BiMessage } from 'react-icons/all'
 import { database } from '../services/firebase'
 import { toast, Toaster } from 'react-hot-toast'
 import { useHistory } from 'react-router-dom'
@@ -18,7 +18,7 @@ export function AdminRoom() {
   const { id } = useParams<RoomParams>()
   const { questions, title } = useRoom(id) 
   const history = useHistory()
-  
+
   const handleEndRoom = async () => {
     await database.ref(`rooms/${id}`).update({
       endedAt: new Date()
@@ -33,6 +33,18 @@ export function AdminRoom() {
 
       toast.success('Deletado com sucesso!')
     }
+  }
+
+  const handleCheckQuestionAsAnswered = async (questionsId: string) => {
+    await database.ref(`rooms/${id}/questions/${questionsId}`).update({
+      isAnswered: true
+    })
+  }
+
+  const handleHighlightQuestion = async (questionsId: string) => {
+    await database.ref(`rooms/${id}/questions/${questionsId}`).update({
+      isHightLighted: true,
+    })
   }
   
   return (
@@ -79,13 +91,31 @@ export function AdminRoom() {
                 key={value.id}
                 author={value.author} 
                 content={value.content}
+                isAnswered={value.isAnswered}
+                isHightLighted={value.isHightLighted}
               >
-                <S.Trash
+                { !value.isAnswered && (
+                  <>
+                    <S.ButtonUser
+                      type='button'
+                      onClick={() => handleCheckQuestionAsAnswered(value.id)}
+                    >
+                      <BiCheckCircle title='Marcar pergunta como respondida' size={22} color='#835afd' />
+                    </S.ButtonUser>
+                    <S.ButtonUser
+                      type='button'
+                      onClick={() => handleHighlightQuestion(value.id)}
+                    >
+                      <BiMessage title='Dar destaque a pergunta' size={22} color='#835afd' />
+                    </S.ButtonUser>
+                  </>
+                ) }
+                <S.ButtonUser
                   type='button'
                   onClick={() => handleDeleteQuestion(value.id)}
                 >
-                  <BiTrash size={22} color='#835afd' />
-                </S.Trash>
+                  <BiTrash title='Deletar uma pergunta' size={22} color='#835afd' />
+                </S.ButtonUser>
               </Question>
           )) }
         </S.QuestionList>

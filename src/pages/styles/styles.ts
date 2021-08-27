@@ -350,7 +350,13 @@ export const SpanCounterLike = styled.span `
 
 `
 
-export const Trash = styled.button `
+export const ButtonUser = styled.button `
   background: transparent;
   border: 0;
 `
+
+export const UserNameH1 = styled.h1 `
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+` 

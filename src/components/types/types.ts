@@ -20,4 +20,6 @@ export type QuestionProps = {
   }
 
   children?: ReactNode
+  isHightLighted?: boolean
+  isAnswered?: boolean
 }

@@ -1,9 +1,20 @@
 import { QuestionProps } from './types/types'
 import * as S from './styles'
+import cx from 'classnames'
 
-export function Question({ author, content, children }: QuestionProps) {
+export function Question({ 
+  author, 
+  content, 
+  children, 
+  isAnswered = false, 
+  isHightLighted = false
+}: QuestionProps) {
   return (
-    <S.Question className='question'>
+    <S.Question className={cx(
+      'question',
+      { answered: isAnswered },
+      { hightLighted: isHightLighted && !isAnswered }
+    )}>
       <S.Paragraph>{content}</S.Paragraph>
 
       <S.Footer>

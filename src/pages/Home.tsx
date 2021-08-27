@@ -18,15 +18,18 @@ export function Home() {
   const history = useHistory()
 
   useEffect(() => {
-    toast.info('Bem vindo ao Let me ask!', {
-      autoClose: 5000,
-      position: 'top-center',
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    })
+    if(!user) {
+      toast.info('Bem vindo ao Let me ask!', {
+        autoClose: 5000,
+        position: 'top-center',
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
+    }
+
   }, [])
 
   const handleCreateRoom = async () => { 

@@ -76,6 +76,23 @@ export const Question = styled.div `
   & + .question {
     margin-top: 8px; // vai colocar 8px no top apartir da segunda div
   }
+
+  
+  &.hightLighted {
+    background: #f4f0ff;
+    border: 1px solid #835afd;
+    
+    footer {
+      > div span {
+        color: #29292e;
+      }
+    }
+  }
+
+  &.answered {
+    background: #dbdcdd;
+    color: #737380;
+  }
 `
 
 export const Paragraph = styled.p `
@@ -92,6 +109,11 @@ export const Footer = styled.footer `
   justify-content: space-between;
   align-items: center;
   margin-top: 24px;
+
+  > div {
+    display: flex;
+    gap: 1rem;
+  }
 `
 
 export const Image = styled.img `

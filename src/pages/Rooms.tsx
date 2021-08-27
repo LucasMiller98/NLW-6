@@ -123,16 +123,20 @@ export function Room() {
                 key={value.id}
                 author={value.author} 
                 content={value.content}
+                isAnswered={value.isAnswered}
+                isHightLighted={value.isHightLighted}
               >
-                <S.Like
-                  type='button'
-                  className={`like-button ${value.likeId ? 'liked': ''}`}
-                  aria-label='Marcar como gostei' // assencibilidade
-                  onClick={() => handleLikeQuestion(value.id, value.likeId)}
-                >
-                  { value.likeCount > 0 && <S.SpanCounterLike>{value.likeCount}</S.SpanCounterLike> }
-                  <BiLike size={25} color='#737380' className='icon-like-stroke' />
-                </S.Like>
+                { !value.isAnswered && (
+                  <S.Like
+                    type='button'
+                    className={`like-button ${value.likeId ? 'liked': ''}`}
+                    aria-label='Marcar como gostei' // assencibilidade
+                    onClick={() => handleLikeQuestion(value.id, value.likeId)}
+                  >
+                    { value.likeCount > 0 && <S.SpanCounterLike>{value.likeCount}</S.SpanCounterLike> }
+                    <BiLike size={25} color='#737380' className='icon-like-stroke' />
+                  </S.Like>
+                ) }
               </Question>
           )) }
         </S.QuestionList>

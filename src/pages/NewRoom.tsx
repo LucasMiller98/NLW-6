@@ -1,5 +1,4 @@
 import * as S from './styles/styles'
-// import ilustrationImg from '../assets/images/ilustration.jpg'
 import logoImg from '../assets/images/logo.jpg'
 import { Button } from '../components/Button'
 import { Link } from 'react-router-dom'
@@ -7,6 +6,7 @@ import { FormEvent, useState } from 'react'
 import { useHistory } from 'react-router-dom'
 import { useContextApi } from '../context/hooks/useContextAPI'
 import { database } from '../services/firebase'
+import { Spinner } from 'react-bootstrap'
 
 export function NewRoom() {
   const history = useHistory()
@@ -35,7 +35,6 @@ export function NewRoom() {
     <>
       <S.PageAuth>
         <S.Aside>
-          {/* <S.Image src={ilustrationImg} alt='Ilustração simbolizando perguntas e respostas' /> */}
           <S.Strong>Crie salas de Q&amp;A ao vivo</S.Strong>
           <S.Paragraph>
             Tire as dúvidas de sua audiência em tempo real
@@ -43,7 +42,7 @@ export function NewRoom() {
         </S.Aside>
         <S.Main>
           <S.MainContent>
-            <h1>{user?.name}</h1>
+            <S.UserNameH1>Olá, {!user?.name && <Spinner animation='border' />} {user?.name}</S.UserNameH1>
             
             <S.Image src={logoImg} alt='logo' />
 
